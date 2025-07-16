@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
+from typing import List
+
 from schemas.user import UserCreate, UserRead
 from db.postgresql.repositories.user_repository import UserRepository
 from api.dependencies import get_db
@@ -21,3 +23,12 @@ def create_user(
         )
     user = repo.create(user_in)
     return user
+
+
+@router.get("/", response_model=List[UserRead], status_code=status.HTTP_200_OK)
+def get_all_users(
+    db: Session = Depends(get_db),
+):
+    repo = UserRepository(db)
+    users = repo.get_all()
+    return users

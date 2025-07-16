@@ -1,10 +1,11 @@
 from typing import Union
 from fastapi import FastAPI
-from api.routes import user_routes
+from api.routes import user_routes, invoice_log_routes
 
 app = FastAPI()
 
 app.include_router(user_routes.router)
+app.include_router(invoice_log_routes.router)
 
 
 @app.get("/")

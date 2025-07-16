@@ -29,11 +29,11 @@ services:
     image: mongo:latest  
     container_name: mongodb-${PROJECT_NAME}
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
-      - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGODB_DATABASE}
     ports:
-      - ${MONGODB_PORT}:6379 
+      - ${MONGODB_PORT}:27017 
     volumes:
       - mongo-wisebill-data:/data/db 
 
